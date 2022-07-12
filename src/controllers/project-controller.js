@@ -5,7 +5,6 @@ exports.pdfExport = async (req, res) => {
 	const { slug } = req.params;
 
 	const browser = await puppeteer.launch({
-		executablePath: "/usr/bin/chromium-browser",
 		args: ["--headless", "--disable-dev-shm-usage"]
 	});
 	const page = await browser.newPage();
