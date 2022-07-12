@@ -5,7 +5,7 @@ exports.pdfExport = async (req, res) => {
 	const { slug } = req.params;
 
 	const browser = await puppeteer.launch({
-		args: ["--headless", "--disable-dev-shm-usage"]
+		args: ["--no-sandbox", "--headless", "--disable-dev-shm-usage"]
 	});
 	const page = await browser.newPage();
 
