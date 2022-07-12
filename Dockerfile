@@ -17,4 +17,4 @@ COPY . .
 # ENV SCULLY_PUPPETEER_EXECUTABLE_PATH /usr/bin/chromium-browser
 
 # build_prod_scully is set in package.json to: "ng build --configuration=production && yarn scully --scanRoutes"
-RUN npm start
+# RUN npm start
