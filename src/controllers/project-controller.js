@@ -4,7 +4,10 @@ const report = require("puppeteer-report");
 exports.pdfExport = async (req, res) => {
 	const { slug } = req.params;
 
-	const browser = await puppeteer.launch({ args: ["--no-sandbox", "--headless", "--disable-gpu"] });
+	const browser = await puppeteer.launch({
+		executablePath: "/usr/bin/chromium-browser",
+		args: ["--headless", "--disable-dev-shm-usage"]
+	});
 	const page = await browser.newPage();
 
 	await page.goto(`https://books.toscrape.com/catalogue/${slug}`, { waitUntil: "networkidle0" });

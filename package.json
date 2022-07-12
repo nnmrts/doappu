@@ -12,7 +12,7 @@
   "dependencies": {
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
-    "puppeteer": "^15.3.2",
+    "puppeteer": "13.5.0",
     "puppeteer-report": "^3.0.3"
   },
   "devDependencies": {

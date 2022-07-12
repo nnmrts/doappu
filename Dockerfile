@@ -1,11 +1,27 @@
-FROM node:16-alpine3.15
+FROM alpine
 
+# Installs latest Chromium (100) package.
 RUN apk add --no-cache \
 	chromium \
-	ca-certificates
+	nss \
+	freetype \
+	harfbuzz \
+	ca-certificates \
+	ttf-freefont \
+	nodejs
 
-# This is to prevent the build from getting stuck on "Taking snapshot of full filesystem"
-# ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
+# Tell Puppeteer to skip installing Chrome. We'll be using the installed package.
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
+	PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
+
+# Add user so we don't need --no-sandbox.
+RUN addgroup -S pptruser && adduser -S -G pptruser pptruser \
+	&& mkdir -p /home/pptruser/Downloads /app \
+	&& chown -R pptruser:pptruser /home/pptruser \
+	&& chown -R pptruser:pptruser /app
+
+# Run everything after as non-privileged user.
+USER pptruser
 
 WORKDIR /app
 COPY package.json package-lock.json ./
