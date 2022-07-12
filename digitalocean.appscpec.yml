@@ -1,0 +1,19 @@
+envs:
+  - key: PORT
+    scope: RUN_AND_BUILD_TIME
+    value: "5000"
+name: doappu
+region: fra
+services:
+  - dockerfile_path: Dockerfile
+    github:
+      branch: main
+      deploy_on_push: true
+      repo: nnmrts/doappu
+    http_port: 5000
+    instance_count: 1
+    instance_size_slug: basic-xs
+    name: doappu
+    routes:
+      - path: /
+    source_dir: /

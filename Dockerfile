@@ -5,7 +5,7 @@ RUN apk add --no-cache \
 	ca-certificates
 
 # This is to prevent the build from getting stuck on "Taking snapshot of full filesystem"
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true 
+# ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 
 WORKDIR /app
 COPY package.json package-lock.json ./
